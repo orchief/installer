@@ -98,7 +98,7 @@ class NewCommand extends Command
     }
 
     /**
-     * Download the temporary Zip to the given file.
+     * Download the temporary Zip to the given file. 
      *
      * @param  string  $zipFile
      * @return $this
