@@ -1,17 +1,17 @@
 {
-    "name": "laravel/lumen-installer",
-    "description": "Lumen application installer.",
-    "keywords": ["laravel", "lumen"],
+    "name": "orchief/orch",
+    "description": "Orch application installer.",
+    "keywords": ["orch"],
     "license": "MIT",
     "authors": [
         {
-            "name": "Taylor Otwell",
-            "email": "taylorotwell@gmail.com"
+            "name": "orchief",
+            "email": "orchief@163.com"
         }
     ],
     "autoload": {
         "psr-4": {
-            "Lumen\\Installer\\Console\\": "src/"
+            "Orch\\Installer\\Console\\": "src/"
         }
     },
     "require": {
@@ -21,6 +21,6 @@
         "symfony/process": "~3.0|~4.0"
     },
     "bin": [
-        "lumen"
+        "orch"
     ]
 }

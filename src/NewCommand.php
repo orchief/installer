@@ -1,6 +1,6 @@
 <?php
 
-namespace Lumen\Installer\Console;
+namespace Orch\Installer\Console;
 
 use ZipArchive;
 use RuntimeException;
