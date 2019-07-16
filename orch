@@ -8,6 +8,7 @@ if (file_exists(__DIR__.'/../../autoload.php')) {
 }
 
 $app = new Symfony\Component\Console\Application('Orch Installer', '1.0.0');
-$app->add(new Orch\Installer\Console\NewCommand);
+// $app->add(new Orch\Installer\Console\NewCommand);
+$app->add(new Orch\Installer\Console\AddressCommand);
 
 $app->run();
