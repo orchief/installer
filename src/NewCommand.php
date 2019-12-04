@@ -9,10 +9,15 @@ use Symfony\Component\Process\Process;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class NewCommand extends Command
 {
+    /**
+     * 下载资源的地址
+     */
+    protected $url;
     /**
      * Configure the command options.
      *
@@ -23,7 +28,8 @@ class NewCommand extends Command
         $this
             ->setName('new')
             ->setDescription('Create a new Orch application.')
-            ->addArgument('name', InputArgument::REQUIRED);
+            ->addArgument('name', InputArgument::REQUIRED)
+            ->addOption('url', 'u', InputOption::VALUE_REQUIRED, '项目压缩包地址', 'http://127.0.0.1/tp5.1/orch.zip');
     }
 
     /**
@@ -35,6 +41,7 @@ class NewCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $this->url = $input->getOption('url');
         if (! class_exists('ZipArchive')) {
             throw new RuntimeException('The Zip PHP extension is not installed. Please install it and try again.');
         }
@@ -105,7 +112,7 @@ class NewCommand extends Command
      */
     protected function download($zipFile)
     {
-        $response = (new Client)->get('http://127.0.0.1/tp5.1/orch.zip');
+        $response = (new Client)->get($this->url);
 
         file_put_contents($zipFile, $response->getBody());
 
@@ -121,13 +128,18 @@ class NewCommand extends Command
      */
     protected function extract($zipFile, $directory)
     {
-        $archive = new ZipArchive;
+        try{
+            $archive = new ZipArchive;
 
-        $archive->open($zipFile);
+            $archive->open($zipFile);
 
-        $archive->extractTo($directory);
+            $archive->extractTo($directory);
 
-        $archive->close();
+            $archive->close();
+        }catch(\Exception $e){
+            die;
+            throw new RuntimeException('资源文件无法解析!');
+        }
 
         return $this;
     }
