@@ -105,7 +105,7 @@ class NewCommand extends Command
      */
     protected function download($zipFile)
     {
-        $response = (new Client)->get('http://127.0.0.1/orch.zip');
+        $response = (new Client)->get('http://127.0.0.1/tp5.1/orch.zip');
 
         file_put_contents($zipFile, $response->getBody());
 
