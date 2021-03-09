@@ -22,7 +22,7 @@ class NewCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('new')
+            ->setName('script')
             ->setDescription('Create a new script application')
             ->addArgument('name', InputArgument::REQUIRED)
             ->addOption('dev', null, InputOption::VALUE_NONE, 'Installs the latest "development" release')
