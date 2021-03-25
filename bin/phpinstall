@@ -9,5 +9,6 @@ if (file_exists(__DIR__.'/../../../autoload.php')) {
 
 $app = new Symfony\Component\Console\Application('Php Installer', '1.0.3');
 $app->add(new Php\Installer\Console\NewCommand);
+$app->add(new Php\Installer\Console\NewThinkphpCommand);
 
 $app->run();
